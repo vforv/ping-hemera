@@ -1,0 +1,67 @@
+{
+  "name": "titan-ping",
+  "version": "1.0.0",
+  "description": "This service use just for testing it will create ping date route which return date.",
+  "main": "service.ts",
+  "directories": {
+    "test": "test"
+  },
+  "nyc": {
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "exclude": [
+      "**/*.d.ts",
+      "coverage",
+      "test",
+      "dist",
+      "src/model",
+      "service.ts",
+      "src/hemera/nats.service.ts",
+      "src/hemera/index.ts",
+      "src/helper/index.ts"
+    ],
+    "reporter": [
+      "html",
+      "text"
+    ],
+    "all": true
+  },
+  "scripts": {
+    "dev": "npm run lint && ts-node service.ts",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "test": "nyc --check-coverage --lines 100 --functions 100 --branches 100 --statements 100 mocha -r ts-node/register test/**/*.test.ts",
+    "start": "node ./dist/service.js",
+    "prestart": "tsc"
+  },
+  "author": "Vladimir Djukic",
+  "license": "ISC",
+  "dependencies": {
+    "@types/dotenv": "^4.0.3",
+    "@types/joi": "^13.0.3",
+    "@types/nats-hemera": "^2.0.0",
+    "dotenv": "^5.0.1",
+    "hemera-joi": "^5.2.1",
+    "hemera-mongo-store": "^6.0.0",
+    "hemera-stats": "^5.0.2",
+    "justinject": "^1.1.3",
+    "mongodb": "^3.0.1",
+    "nats": "^0.8.4",
+    "nats-hemera": "^5.4.2",
+    "pino": "^4.16.1",
+    "replace-once": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.3",
+    "@types/mocha": "^5.2.0",
+    "@types/node": "^8.0.17",
+    "@types/pino": "^4.7.1",
+    "chai": "^4.1.2",
+    "hemera-testsuite": "^4.0.2",
+    "mocha": "^5.1.1",
+    "ts-node": "^6.0.0",
+    "tslint": "^5.9.1",
+    "typescript": "^2.3.2"
+  }
+}
